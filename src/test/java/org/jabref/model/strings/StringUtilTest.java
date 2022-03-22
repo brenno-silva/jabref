@@ -1,21 +1,17 @@
 package org.jabref.model.strings;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class StringUtilTest {
 
@@ -148,7 +144,17 @@ class StringUtilTest {
 
     @Test
     void testGetPart() {
-        // Should be added
+        //Caso de Teste 1(CT1)
+        assertEquals("{roupa}", StringUtil.getPart( "O rato roeu a {roupa} do rei de roma", 13, false));
+        
+        //Caso de Teste 2(CT2)
+        assertEquals("", StringUtil.getPart( "", 0, false));
+        
+        //Caso de Teste 3(CT3)
+        assertEquals("", StringUtil.getPart( "Um passo por }dia}", 12, false));
+        
+        //Caso de Teste 4(CT4)
+        assertEquals("dia", StringUtil.getPart( "Um passo por dia", 12, true));
     }
 
     @Test
